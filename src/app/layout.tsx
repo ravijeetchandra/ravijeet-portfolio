@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   verification: {
-    google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
+    google: "gJ9_kA-Z-0hZUInfyBL56DLt9bElMTfbJijnqe3asrs",
   },
 };
 
