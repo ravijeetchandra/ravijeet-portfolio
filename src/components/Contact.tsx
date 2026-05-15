@@ -1,7 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Send, Download } from "lucide-react";
+import { Mail, Linkedin, Github, Send, Download, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+const ACCESS_KEY = "61f43dab-67fe-4c53-bfa8-7a1cd2bb4b7b";
 
 const socialLinks = [
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/ravijeetchandra/" },
@@ -10,6 +14,33 @@ const socialLinks = [
 ];
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, access_key: ACCESS_KEY }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
@@ -45,37 +76,70 @@ export default function Contact() {
               <h3 className="text-xl font-semibold text-white mb-6">
                 Send a Message
               </h3>
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
                     type="text"
+                    name="name"
                     placeholder="Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
                   />
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
                 <input
                   type="text"
+                  name="subject"
                   placeholder="Subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
                 />
                 <textarea
+                  name="message"
                   placeholder="Message"
                   rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors resize-none"
                 />
+                {status === "success" && (
+                  <div className="flex items-center gap-2 text-green-400 bg-green-400/10 px-4 py-3 rounded-lg">
+                    <CheckCircle size={18} />
+                    <span>Message sent! I&apos;ll get back to you soon.</span>
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="flex items-center gap-2 text-red-400 bg-red-400/10 px-4 py-3 rounded-lg">
+                    <AlertCircle size={18} />
+                    <span>Failed to send. Please try again or email me directly.</span>
+                  </div>
+                )}
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={status === "idle" ? { scale: 1.02 } : {}}
+                  whileTap={status === "idle" ? { scale: 0.98 } : {}}
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-light text-white font-medium rounded-lg transition-colors"
+                  disabled={status === "sending"}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-light disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
                 >
-                  <Send size={18} />
-                  Send Message
+                  {status === "sending" ? (
+                    <Loader2 size={18} className="animate-spin" />
+                  ) : (
+                    <Send size={18} />
+                  )}
+                  {status === "sending" ? "Sending..." : "Send Message"}
                 </motion.button>
               </form>
             </div>
