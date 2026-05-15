@@ -6,6 +6,7 @@ const nextConfig = {
   },
   output: "export",
   basePath: "/ravijeet-portfolio",
+  assetPrefix: "/ravijeet-portfolio/",
 };
 
 module.exports = nextConfig;
