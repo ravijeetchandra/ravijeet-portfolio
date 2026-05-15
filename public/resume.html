@@ -4,153 +4,218 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ravijeet Chandra - Resume</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', -apple-system, Roboto, Arial, sans-serif;
       color: #1f2937;
-      background: #fff;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
     }
-    .page {
-      width: 190mm;
-      padding: 20mm 15mm 10mm 15mm;
-      margin: 0 auto;
+
+    .resume {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fff;
+      padding: 20mm 18mm 15mm 18mm;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      position: relative;
     }
 
     /* Header */
-    .header { text-align: center; margin-bottom: 6mm; }
-    .header h1 { font-size: 22pt; font-weight: 700; color: #111827; letter-spacing: -0.5px; }
-    .header .role { font-size: 10.5pt; color: #4b5563; margin-top: 1mm; }
-    .header .links { font-size: 8.5pt; color: #2563eb; margin-top: 1mm; }
-    .header .links span { color: #9ca3af; }
+    .header { text-align: center; margin-bottom: 7mm; }
+    .header h1 { font-size: 24pt; font-weight: 800; color: #111827; letter-spacing: -0.5px; }
+    .header .gradient-bar {
+      width: 60mm; height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+      margin: 4mm auto;
+      border-radius: 2px;
+    }
+    .header .role { font-size: 10pt; color: #4b5563; font-weight: 500; }
+    .header .links { font-size: 8.5pt; color: #4b5563; margin-top: 2mm; }
+    .header .links a { color: #2563eb; text-decoration: none; }
+    .header .links .sep { color: #d1d5db; margin: 0 3px; }
 
-    /* Section title */
+    /* Section */
     .section-title {
       font-size: 10pt; font-weight: 700; color: #2563eb;
-      border-bottom: 1.5px solid #2563eb;
-      padding-bottom: 1mm; margin-top: 4mm; margin-bottom: 3mm;
-      text-transform: uppercase; letter-spacing: 0.5px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      margin-top: 5mm; margin-bottom: 2.5mm;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, #2563eb, transparent);
     }
 
     /* Summary */
-    .summary-text { font-size: 8.5pt; color: #374151; text-align: justify; line-height: 1.35; }
+    .summary-text { font-size: 9pt; color: #374151; line-height: 1.45; text-align: justify; }
 
     /* Experience */
-    .exp-item { margin-bottom: 3mm; }
-    .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
-    .exp-title { font-weight: 600; color: #111827; font-size: 9.5pt; }
-    .exp-company { font-weight: 500; color: #2563eb; font-size: 9pt; }
-    .exp-period { font-size: 8pt; color: #6b7280; }
-    .exp-loc { font-size: 7.5pt; color: #9ca3af; margin-bottom: 0.5mm; }
-    ul { padding-left: 4mm; margin-top: 0.5mm; }
-    li { font-size: 8pt; color: #374151; line-height: 1.35; margin-bottom: 0.3mm; }
+    .exp-item { margin-bottom: 3.5mm; }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 2px; }
+    .exp-left { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
+    .exp-title { font-weight: 700; color: #111827; font-size: 10pt; }
+    .exp-company { color: #2563eb; font-weight: 600; font-size: 9.5pt; }
+    .exp-period { font-size: 8pt; color: #6b7280; white-space: nowrap; }
+    .exp-loc { font-size: 7.5pt; color: #9ca3af; }
+    ul { padding-left: 4mm; margin-top: 1mm; }
+    li { font-size: 8.5pt; color: #4b5563; line-height: 1.4; margin-bottom: 0.5mm; }
+    li::marker { color: #3b82f6; }
 
-    /* Grid section for education + skills side by side */
-    .grid-2 { display: flex; gap: 10mm; }
+    /* Two column layout for Education + Skills */
+    .grid-2 { display: flex; gap: 10mm; margin-top: 1mm; }
     .grid-2 > div { flex: 1; }
+    .edu-text { font-size: 9pt; }
+    .edu-text strong { color: #111827; }
 
-    .skills-text { font-size: 8.5pt; color: #374151; line-height: 1.5; }
-    .skills-text .cat { font-weight: 600; color: #2563eb; }
+    .skills-text { font-size: 8.5pt; color: #374151; line-height: 1.55; }
+    .skills-text .cat { font-weight: 600; color: #111827; }
+    .skills-text .highlight { color: #2563eb; }
 
-    .project-item { margin-bottom: 2mm; }
-    .proj-title { font-weight: 500; color: #111827; font-size: 8.5pt; }
-    .proj-desc { font-size: 8pt; color: #4b5563; }
+    /* Projects */
+    .project-item { margin-bottom: 2.5mm; padding-left: 1mm; }
+    .proj-title { font-weight: 600; color: #111827; font-size: 9pt; }
+    .proj-title::before { content: "▹ "; color: #3b82f6; }
+    .proj-desc { font-size: 8pt; color: #6b7280; margin-left: 4mm; }
 
-    .achieve-item { font-size: 8pt; color: #374151; margin-bottom: 0.5mm; }
+    /* Achievements */
+    .achieve-item { font-size: 8.5pt; color: #4b5563; margin-bottom: 0.8mm; padding-left: 3mm; }
+    .achieve-item::before { content: "✦ "; color: #8b5cf6; margin-left: -3mm; }
 
-    /* Make all elements avoid page breaks */
-    .exp-item, .project-item, .section-title, .grid-2 > div {
-      page-break-inside: avoid;
+    /* Download button - hidden in print */
+    .no-print { text-align: center; margin-top: 20px; }
+    .print-btn {
+      padding: 12px 36px; background: #2563eb; color: #fff; border: none;
+      border-radius: 8px; font-size: 11pt; cursor: pointer;
+    }
+    .print-btn:hover { background: #1d4ed8; }
+    .note { font-size: 8.5pt; color: #9ca3af; margin-top: 6px; }
+
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      @page { margin: 0; size: A4; }
+      body { background: #fff; padding: 0; display: block; }
+      .resume {
+        width: 100%; min-height: auto; padding: 15mm 16mm 12mm 16mm;
+        box-shadow: none; margin: 0;
+      }
+      .no-print { display: none !important; }
+      .section-title::after { background: #2563eb; }
     }
   </style>
 </head>
 <body>
 
-<div id="resume-content" class="page">
+<div class="no-print">
+  <button class="print-btn" onclick="window.print()">Download Resume as PDF</button>
+  <div class="note">Click the button, then choose "Save as PDF" in the print dialog</div>
+</div>
 
+<div class="resume" id="resume-content">
   <div class="header">
     <h1>RAVIJEET CHANDRA</h1>
+    <div class="gradient-bar"></div>
     <div class="role">Lead Data Scientist &amp; Generative AI Engineer</div>
     <div class="links">
-      ravijeet.chandra@gmail.com <span>|</span> linkedin.com/in/ravijeetchandra <span>|</span> github.com/ravijeetchandra <span>|</span> India
+      ravijeet.chandra@gmail.com <span class="sep">|</span>
+      linkedin.com/in/ravijeetchandra <span class="sep">|</span>
+      github.com/ravijeetchandra <span class="sep">|</span>
+      India
     </div>
   </div>
 
   <div class="section-title">Professional Summary</div>
   <p class="summary-text">
     Lead Data Scientist with 8+ years of experience designing enterprise-scale AI systems, recommendation engines,
-    and Generative AI solutions across global organizations. Proven track record of driving 4-5% monthly sales growth
-    through recommendation systems deployed across 400K+ retail stores in international markets. Expertise in LLM
-    applications, RAG systems, autonomous AI agents, and production ML pipelines.
+    and Generative AI solutions across global organizations. Drove 4-5% monthly sales growth through recommendation
+    systems deployed across 400K+ retail stores in international markets. Expertise in LLMs, RAG systems, autonomous
+    AI agents, and production ML pipelines.
   </p>
 
   <div class="section-title">Experience</div>
 
   <div class="exp-item">
     <div class="exp-header">
-      <span><span class="exp-title">Lead Data Scientist</span> &mdash; <span class="exp-company">Dr. Martens plc</span></span>
-      <span class="exp-period">Jan 2026 &ndash; Present</span>
+      <div class="exp-left">
+        <span class="exp-title">Lead Data Scientist</span>
+        <span class="exp-company">Dr. Martens plc</span>
+      </div>
+      <span class="exp-period">Jan 2026 &mdash; Present</span>
     </div>
     <div class="exp-loc">Bengaluru, India</div>
     <ul>
       <li>Leading enterprise AI strategy and global data initiatives at Dr. Martens headquarters</li>
-      <li>Driving customer intelligence platforms and advanced analytics for business impact across retail</li>
+      <li>Driving customer intelligence platforms and advanced analytics for retail business impact</li>
       <li>Implementing intelligent automation systems and next-generation AI solutions</li>
     </ul>
   </div>
 
   <div class="exp-item">
     <div class="exp-header">
-      <span><span class="exp-title">Data Scientist</span> &mdash; <span class="exp-company">Fractal Analytics</span></span>
-      <span class="exp-period">Jun 2022 &ndash; Jan 2026</span>
+      <div class="exp-left">
+        <span class="exp-title">Data Scientist</span>
+        <span class="exp-company">Fractal Analytics</span>
+      </div>
+      <span class="exp-period">Jun 2022 &mdash; Jan 2026</span>
     </div>
     <div class="exp-loc">Bengaluru, India</div>
     <ul>
-      <li>Built enterprise recommendation engine driving 4-5% monthly sales growth across retail chains in Philippines via Test and Control</li>
-      <li>Expanded recommendation engine to Vietnam and Indonesia markets, scaling to 400K+ retail stores</li>
-      <li>Developed automated insights engine with GenAI (RAG, prompt engineering, LangChain) for financial chatbot</li>
-      <li>Led pan-India business for CPG client covering 12+ lakh stores with product recommendation models</li>
-      <li>Managed end-to-end client communication, business problem formulation, and model deployment</li>
+      <li>Built enterprise recommendation engine driving 4-5% monthly sales growth in Philippines via Test and Control</li>
+      <li>Expanded to Vietnam and Indonesia markets, scaling to 400K+ retail stores</li>
+      <li>Developed GenAI insights engine (RAG, LangChain) for financial chatbot and decision-making</li>
+      <li>Led pan-India CPG business covering 12+ lakh stores with product recommendation models</li>
+      <li>Managed end-to-end client communication, problem formulation, and model deployment</li>
     </ul>
   </div>
 
   <div class="exp-item">
     <div class="exp-header">
-      <span><span class="exp-title">Machine Learning Engineer</span> &mdash; <span class="exp-company">Accenture</span></span>
-      <span class="exp-period">Aug 2021 &ndash; Jun 2022</span>
+      <div class="exp-left">
+        <span class="exp-title">Machine Learning Engineer</span>
+        <span class="exp-company">Accenture</span>
+      </div>
+      <span class="exp-period">Aug 2021 &mdash; Jun 2022</span>
     </div>
     <div class="exp-loc">India</div>
     <ul>
-      <li>Developed and deployed NLP-based pipeline for leading cab service provider, automating ticketing process</li>
-      <li>Improved base model performance by 8-9% through live trials over one month</li>
+      <li>Developed NLP pipeline for leading cab service provider, automating ticketing process</li>
+      <li>Improved model performance by 8-9% through live trials over one month</li>
       <li>Led client communication and formulated data-driven business solutions</li>
     </ul>
   </div>
 
   <div class="exp-item">
     <div class="exp-header">
-      <span><span class="exp-title">Data Scientist</span> &mdash; <span class="exp-company">Secure Meters Limited</span></span>
-      <span class="exp-period">Jul 2019 &ndash; Jul 2021</span>
+      <div class="exp-left">
+        <span class="exp-title">Data Scientist</span>
+        <span class="exp-company">Secure Meters Limited</span>
+      </div>
+      <span class="exp-period">Jul 2019 &mdash; Jul 2021</span>
     </div>
     <div class="exp-loc">Rajasthan, India</div>
     <ul>
-      <li>Reduced energy demand forecast errors from 7% to 1.8% using Ensemble techniques</li>
-      <li>Built interactive data visualization dashboards using Plotly and Dash</li>
-      <li>Classification model achieving 97% accuracy on field test dataset using CNN, YOLO, TensorFlow</li>
+      <li>Reduced energy forecast errors from 7% to 1.8% using Ensemble techniques</li>
+      <li>Built interactive dashboards using Plotly and Dash for business intelligence</li>
+      <li>Achieved 97% accuracy on field test classification using CNN, YOLO, TensorFlow</li>
     </ul>
   </div>
 
   <div class="exp-item">
     <div class="exp-header">
-      <span><span class="exp-title">Software Developer</span> &mdash; <span class="exp-company">Secure Meters Limited</span></span>
-      <span class="exp-period">Jul 2018 &ndash; Jul 2019</span>
+      <div class="exp-left">
+        <span class="exp-title">Software Developer</span>
+        <span class="exp-company">Secure Meters Limited</span>
+      </div>
+      <span class="exp-period">Jul 2018 &mdash; Jul 2019</span>
     </div>
     <div class="exp-loc">Rajasthan, India</div>
     <ul>
-      <li>Developed Android and iOS apps for commissioning heat meters with REST APIs and SQLite</li>
+      <li>Developed Android/iOS apps for heat meter commissioning with REST APIs and SQLite</li>
       <li>Built backoffice web services for database interaction</li>
     </ul>
   </div>
@@ -158,13 +223,13 @@
   <div class="grid-2">
     <div>
       <div class="section-title">Education</div>
-      <p style="font-size:9pt;"><strong>B.Tech</strong>, Electrical Engineering</p>
+      <p class="edu-text"><strong>B.Tech</strong>, Electrical Engineering</p>
     </div>
     <div>
       <div class="section-title">Skills</div>
       <div class="skills-text">
-        <span class="cat">AI/ML:</span> GenAI, LLMs, RAG, LangChain, LangGraph, AutoGen, LlamaIndex, OpenAI APIs, TensorFlow, PyTorch, Scikit-learn, NLP<br>
-        <span class="cat">Data:</span> PySpark, Databricks, SQL, Pandas, NumPy, Feature Engineering<br>
+        <span class="cat">AI/ML:</span> <span class="highlight">GenAI</span>, LLMs, RAG, LangChain, LangGraph, AutoGen, LlamaIndex, OpenAI APIs, TensorFlow, PyTorch, Scikit-learn, NLP<br>
+        <span class="cat">Data:</span> PySpark, Databricks, SQL, Pandas, NumPy, Feature Engineering, ETL<br>
         <span class="cat">Tools:</span> MLflow, Docker, FastAPI, Azure, Git, Vector DBs, MLOps
       </div>
     </div>
@@ -173,15 +238,15 @@
   <div class="section-title">Projects</div>
   <div class="project-item">
     <div class="proj-title">Enterprise Retail Recommendation Engine</div>
-    <div class="proj-desc">Scalable system covering 400K+ stores across Vietnam, Philippines &amp; Indonesia. Python, PySpark, Databricks.</div>
+    <div class="proj-desc">400K+ store system across Vietnam, Philippines &amp; Indonesia. Python, PySpark, Databricks.</div>
   </div>
   <div class="project-item">
     <div class="proj-title">GenAI Enterprise Insights Platform</div>
-    <div class="proj-desc">Automated business insights generation using LLMs, LangChain, and RAG architecture.</div>
+    <div class="proj-desc">Automated business insights using LLMs, LangChain, and RAG architecture.</div>
   </div>
   <div class="project-item">
     <div class="proj-title">Autonomous Structured Data AI Agent</div>
-    <div class="proj-desc">Autonomous AI workflows for analyzing banking datasets using LangGraph and AutoGen.</div>
+    <div class="proj-desc">Banking data analysis workflows using LangGraph and AutoGen.</div>
   </div>
   <div class="project-item">
     <div class="proj-title">Customer Intelligence &amp; CLTV Modeling</div>
@@ -189,32 +254,11 @@
   </div>
 
   <div class="section-title">Achievements</div>
-  <div class="achieve-item">&bull; Enterprise AI scaled across 3+ international markets (Philippines, Vietnam, Indonesia)</div>
-  <div class="achieve-item">&bull; Recommendation engine delivering 4-5% monthly sales growth</div>
-  <div class="achieve-item">&bull; Reduced forecast error from 7% to 1.8% via ensemble methods</div>
-  <div class="achieve-item">&bull; 97% classification accuracy on production field test dataset</div>
-
+  <div class="achieve-item">Enterprise AI scaled across 3+ international markets</div>
+  <div class="achieve-item">Recommendation engine delivering 4-5% monthly sales growth</div>
+  <div class="achieve-item">Reduced forecast error from 7% to 1.8% via ensemble methods</div>
+  <div class="achieve-item">97% classification accuracy on production field dataset</div>
 </div>
 
-<script>
-(function() {
-  var element = document.getElementById('resume-content');
-
-  element.style.display = 'block';
-
-  var opt = {
-    margin:       [5, 5, 5, 5],
-    filename:     'Ravijeet_Chandra_Resume.pdf',
-    image:        { type: 'jpeg', quality: 0.95 },
-    html2canvas:  { scale: 3, useCORS: true, logging: false, letterRendering: true },
-    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
-  };
-
-  html2pdf().set(opt).from(element).save().then(function() {
-    setTimeout(function() { window.close(); }, 500);
-  });
-})();
-</script>
 </body>
 </html>
