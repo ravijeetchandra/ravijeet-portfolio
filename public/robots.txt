@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://ravijeetchandra.github.io/ravijeet-portfolio/sitemap.xml
