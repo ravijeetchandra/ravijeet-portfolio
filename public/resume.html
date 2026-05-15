@@ -4,233 +4,217 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ravijeet Chandra - Resume</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-    .card { background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); padding: 30px; max-width: 600px; text-align: center; }
-    h1 { font-size: 20pt; color: #111827; margin-bottom: 8px; }
-    p { color: #4b5563; font-size: 11pt; line-height: 1.5; }
-    .btn {
-      display: inline-block; margin-top: 16px; padding: 12px 32px;
-      background: #2563eb; color: #fff; border: none; border-radius: 8px;
-      font-size: 11pt; cursor: pointer; text-decoration: none;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', -apple-system, Roboto, Arial, sans-serif;
+      color: #1f2937;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
-    .btn:hover { background: #1d4ed8; }
+    .page {
+      width: 190mm;
+      padding: 20mm 15mm 10mm 15mm;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 6mm; }
+    .header h1 { font-size: 22pt; font-weight: 700; color: #111827; letter-spacing: -0.5px; }
+    .header .role { font-size: 10.5pt; color: #4b5563; margin-top: 1mm; }
+    .header .links { font-size: 8.5pt; color: #2563eb; margin-top: 1mm; }
+    .header .links span { color: #9ca3af; }
+
+    /* Section title */
+    .section-title {
+      font-size: 10pt; font-weight: 700; color: #2563eb;
+      border-bottom: 1.5px solid #2563eb;
+      padding-bottom: 1mm; margin-top: 4mm; margin-bottom: 3mm;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    /* Summary */
+    .summary-text { font-size: 8.5pt; color: #374151; text-align: justify; line-height: 1.35; }
+
+    /* Experience */
+    .exp-item { margin-bottom: 3mm; }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+    .exp-title { font-weight: 600; color: #111827; font-size: 9.5pt; }
+    .exp-company { font-weight: 500; color: #2563eb; font-size: 9pt; }
+    .exp-period { font-size: 8pt; color: #6b7280; }
+    .exp-loc { font-size: 7.5pt; color: #9ca3af; margin-bottom: 0.5mm; }
+    ul { padding-left: 4mm; margin-top: 0.5mm; }
+    li { font-size: 8pt; color: #374151; line-height: 1.35; margin-bottom: 0.3mm; }
+
+    /* Grid section for education + skills side by side */
+    .grid-2 { display: flex; gap: 10mm; }
+    .grid-2 > div { flex: 1; }
+
+    .skills-text { font-size: 8.5pt; color: #374151; line-height: 1.5; }
+    .skills-text .cat { font-weight: 600; color: #2563eb; }
+
+    .project-item { margin-bottom: 2mm; }
+    .proj-title { font-weight: 500; color: #111827; font-size: 8.5pt; }
+    .proj-desc { font-size: 8pt; color: #4b5563; }
+
+    .achieve-item { font-size: 8pt; color: #374151; margin-bottom: 0.5mm; }
+
+    /* Make all elements avoid page breaks */
+    .exp-item, .project-item, .section-title, .grid-2 > div {
+      page-break-inside: avoid;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Resume Downloaded!</h1>
-    <p>If the download didn't start automatically, click the button below.</p>
-    <button class="btn" onclick="generatePDF()">Download Resume</button>
+
+<div id="resume-content" class="page">
+
+  <div class="header">
+    <h1>RAVIJEET CHANDRA</h1>
+    <div class="role">Lead Data Scientist &amp; Generative AI Engineer</div>
+    <div class="links">
+      ravijeet.chandra@gmail.com <span>|</span> linkedin.com/in/ravijeetchandra <span>|</span> github.com/ravijeetchandra <span>|</span> India
+    </div>
   </div>
 
+  <div class="section-title">Professional Summary</div>
+  <p class="summary-text">
+    Lead Data Scientist with 8+ years of experience designing enterprise-scale AI systems, recommendation engines,
+    and Generative AI solutions across global organizations. Proven track record of driving 4-5% monthly sales growth
+    through recommendation systems deployed across 400K+ retail stores in international markets. Expertise in LLM
+    applications, RAG systems, autonomous AI agents, and production ML pipelines.
+  </p>
+
+  <div class="section-title">Experience</div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span><span class="exp-title">Lead Data Scientist</span> &mdash; <span class="exp-company">Dr. Martens plc</span></span>
+      <span class="exp-period">Jan 2026 &ndash; Present</span>
+    </div>
+    <div class="exp-loc">Bengaluru, India</div>
+    <ul>
+      <li>Leading enterprise AI strategy and global data initiatives at Dr. Martens headquarters</li>
+      <li>Driving customer intelligence platforms and advanced analytics for business impact across retail</li>
+      <li>Implementing intelligent automation systems and next-generation AI solutions</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span><span class="exp-title">Data Scientist</span> &mdash; <span class="exp-company">Fractal Analytics</span></span>
+      <span class="exp-period">Jun 2022 &ndash; Jan 2026</span>
+    </div>
+    <div class="exp-loc">Bengaluru, India</div>
+    <ul>
+      <li>Built enterprise recommendation engine driving 4-5% monthly sales growth across retail chains in Philippines via Test and Control</li>
+      <li>Expanded recommendation engine to Vietnam and Indonesia markets, scaling to 400K+ retail stores</li>
+      <li>Developed automated insights engine with GenAI (RAG, prompt engineering, LangChain) for financial chatbot</li>
+      <li>Led pan-India business for CPG client covering 12+ lakh stores with product recommendation models</li>
+      <li>Managed end-to-end client communication, business problem formulation, and model deployment</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span><span class="exp-title">Machine Learning Engineer</span> &mdash; <span class="exp-company">Accenture</span></span>
+      <span class="exp-period">Aug 2021 &ndash; Jun 2022</span>
+    </div>
+    <div class="exp-loc">India</div>
+    <ul>
+      <li>Developed and deployed NLP-based pipeline for leading cab service provider, automating ticketing process</li>
+      <li>Improved base model performance by 8-9% through live trials over one month</li>
+      <li>Led client communication and formulated data-driven business solutions</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span><span class="exp-title">Data Scientist</span> &mdash; <span class="exp-company">Secure Meters Limited</span></span>
+      <span class="exp-period">Jul 2019 &ndash; Jul 2021</span>
+    </div>
+    <div class="exp-loc">Rajasthan, India</div>
+    <ul>
+      <li>Reduced energy demand forecast errors from 7% to 1.8% using Ensemble techniques</li>
+      <li>Built interactive data visualization dashboards using Plotly and Dash</li>
+      <li>Classification model achieving 97% accuracy on field test dataset using CNN, YOLO, TensorFlow</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span><span class="exp-title">Software Developer</span> &mdash; <span class="exp-company">Secure Meters Limited</span></span>
+      <span class="exp-period">Jul 2018 &ndash; Jul 2019</span>
+    </div>
+    <div class="exp-loc">Rajasthan, India</div>
+    <ul>
+      <li>Developed Android and iOS apps for commissioning heat meters with REST APIs and SQLite</li>
+      <li>Built backoffice web services for database interaction</li>
+    </ul>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-title">Education</div>
+      <p style="font-size:9pt;"><strong>B.Tech</strong>, Electrical Engineering</p>
+    </div>
+    <div>
+      <div class="section-title">Skills</div>
+      <div class="skills-text">
+        <span class="cat">AI/ML:</span> GenAI, LLMs, RAG, LangChain, LangGraph, AutoGen, LlamaIndex, OpenAI APIs, TensorFlow, PyTorch, Scikit-learn, NLP<br>
+        <span class="cat">Data:</span> PySpark, Databricks, SQL, Pandas, NumPy, Feature Engineering<br>
+        <span class="cat">Tools:</span> MLflow, Docker, FastAPI, Azure, Git, Vector DBs, MLOps
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Projects</div>
+  <div class="project-item">
+    <div class="proj-title">Enterprise Retail Recommendation Engine</div>
+    <div class="proj-desc">Scalable system covering 400K+ stores across Vietnam, Philippines &amp; Indonesia. Python, PySpark, Databricks.</div>
+  </div>
+  <div class="project-item">
+    <div class="proj-title">GenAI Enterprise Insights Platform</div>
+    <div class="proj-desc">Automated business insights generation using LLMs, LangChain, and RAG architecture.</div>
+  </div>
+  <div class="project-item">
+    <div class="proj-title">Autonomous Structured Data AI Agent</div>
+    <div class="proj-desc">Autonomous AI workflows for analyzing banking datasets using LangGraph and AutoGen.</div>
+  </div>
+  <div class="project-item">
+    <div class="proj-title">Customer Intelligence &amp; CLTV Modeling</div>
+    <div class="proj-desc">Customer lifetime value prediction for strategic retail decision-making.</div>
+  </div>
+
+  <div class="section-title">Achievements</div>
+  <div class="achieve-item">&bull; Enterprise AI scaled across 3+ international markets (Philippines, Vietnam, Indonesia)</div>
+  <div class="achieve-item">&bull; Recommendation engine delivering 4-5% monthly sales growth</div>
+  <div class="achieve-item">&bull; Reduced forecast error from 7% to 1.8% via ensemble methods</div>
+  <div class="achieve-item">&bull; 97% classification accuracy on production field test dataset</div>
+
+</div>
+
 <script>
-function generatePDF() {
-  var doc = new jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-  var pw = 190;
-  var x = 10;
-  var y = 15;
-  var pageHeight = 297;
-  var bottomMargin = 15;
+(function() {
+  var element = document.getElementById('resume-content');
 
-  function addPage() { doc.addPage(); y = 15; }
-  function checkPage(h) { if (y + h > pageHeight - bottomMargin) addPage(); }
-  function write(text, size, style, color, indent) {
-    doc.setFontSize(size || 10);
-    doc.setFont('helvetica', style || 'normal');
-    if (color) doc.setTextColor(color[0], color[1], color[2]);
-    else doc.setTextColor(31, 41, 55);
-    var lines = doc.splitTextToSize(text || '', pw - (indent || 0));
-    checkPage(lines.length * (size || 10) * 0.35);
-    doc.text(lines, x + (indent || 0), y);
-    y += lines.length * (size || 10) * 0.35 + 0.5;
-  }
-  function line() {
-    y += 1;
-    doc.setDrawColor(37, 99, 235);
-    doc.setLineWidth(0.4);
-    doc.line(x, y, x + pw, y);
-    y += 3;
-  }
+  element.style.display = 'block';
 
-  // Header
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(18);
-  doc.setTextColor(17, 24, 39);
-  var name = 'RAVIJEET CHANDRA';
-  doc.text(name, x + pw/2, y, { align: 'center' });
-  y += 7;
+  var opt = {
+    margin:       [5, 5, 5, 5],
+    filename:     'Ravijeet_Chandra_Resume.pdf',
+    image:        { type: 'jpeg', quality: 0.95 },
+    html2canvas:  { scale: 3, useCORS: true, logging: false, letterRendering: true },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+  };
 
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10);
-  doc.setTextColor(75, 85, 99);
-  doc.text('Lead Data Scientist & Generative AI Engineer', x + pw/2, y, { align: 'center' });
-  y += 5;
-
-  doc.setFontSize(8.5);
-  doc.setTextColor(37, 99, 235);
-  doc.text('ravijeet.chandra@gmail.com  |  linkedin.com/in/ravijeetchandra  |  github.com/ravijeetchandra  |  India', x + pw/2, y, { align: 'center' });
-  y += 7;
-
-  // Summary
-  line();
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(37, 99, 235);
-  doc.text('PROFESSIONAL SUMMARY', x, y);
-  y += 4;
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.5);
-  doc.setTextColor(55, 65, 81);
-  var summary = 'Lead Data Scientist with 8+ years of experience designing enterprise-scale AI systems, recommendation engines, and Generative AI solutions across global organizations. Drove 4-5% monthly sales growth through recommendation systems deployed across 400K+ retail stores in international markets. Expertise in LLMs, RAG, autonomous AI agents, and production ML pipelines.';
-  var lines = doc.splitTextToSize(summary, pw);
-  checkPage(lines.length * 3.5);
-  doc.text(lines, x, y);
-  y += lines.length * 3.5 + 2;
-
-  // Experience
-  line();
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(37, 99, 235);
-  doc.text('EXPERIENCE', x, y);
-  y += 5;
-
-  var jobs = [
-    { title: 'Lead Data Scientist', company: 'Dr. Martens plc', period: 'Jan 2026 - Present', loc: 'Bengaluru, India', items: [
-      'Leading enterprise AI strategy and global data initiatives at Dr. Martens headquarters',
-      'Driving customer intelligence platforms and advanced analytics for business impact',
-      'Implementing intelligent automation systems for global retail operations'
-    ]},
-    { title: 'Data Scientist', company: 'Fractal Analytics', period: 'Jun 2022 - Jan 2026', loc: 'Bengaluru, India', items: [
-      'Built recommendation engine driving 4-5% monthly sales growth across retail chains in Philippines',
-      'Expanded to Vietnam and Indonesia markets, scaling to 400K+ retail stores',
-      'Developed GenAI insights engine (RAG, LangChain) for financial chatbot and decision-making',
-      'Led pan-India CPG business covering 12+ lakh stores with recommendation models'
-    ]},
-    { title: 'Machine Learning Engineer', company: 'Accenture', period: 'Aug 2021 - Jun 2022', loc: 'India', items: [
-      'Developed NLP pipeline automating ticketing process for leading cab service provider',
-      'Improved model performance by 8-9% through live trials over one month'
-    ]},
-    { title: 'Data Scientist', company: 'Secure Meters Ltd', period: 'Jul 2019 - Jul 2021', loc: 'Rajasthan, India', items: [
-      'Reduced energy forecast error from 7% to 1.8% using Ensemble techniques',
-      '97% accuracy classification model using CNN, YOLO, TensorFlow on field test dataset',
-      'Built interactive dashboards using Plotly and Dash'
-    ]},
-    { title: 'Software Developer', company: 'Secure Meters Ltd', period: 'Jul 2018 - Jul 2019', loc: 'Rajasthan, India', items: [
-      'Developed Android/iOS apps for heat meter commissioning with REST APIs',
-      'Built backoffice web services for database interaction'
-    ]}
-  ];
-
-  for (var j = 0; j < jobs.length; j++) {
-    var job = jobs[j];
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(9);
-    doc.setTextColor(17, 24, 39);
-    doc.text(job.title + '  --  ', x, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(37, 99, 235);
-    doc.text(job.company, x + doc.getTextWidth(job.title + '  --  '), y);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(107, 114, 128);
-    var periodW = doc.getTextWidth(job.period);
-    doc.text(job.period, x + pw - periodW, y);
-    y += 3.5;
-
-    doc.setFontSize(7.5);
-    doc.setTextColor(156, 163, 175);
-    doc.text(job.loc, x, y);
-    y += 3;
-
-    doc.setFontSize(8.5);
-    doc.setTextColor(55, 65, 81);
-    for (var k = 0; k < job.items.length; k++) {
-      var bullet = '- ' + job.items[k];
-      var blines = doc.splitTextToSize(bullet, pw - 3);
-      checkPage(blines.length * 3.3);
-      doc.text(blines, x + 2, y);
-      y += blines.length * 3.3 + 0.3;
-    }
-    y += 2;
-  }
-
-  // Education
-  line();
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(37, 99, 235);
-  doc.text('EDUCATION', x, y);
-  y += 4;
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9);
-  doc.setTextColor(17, 24, 39);
-  doc.text('Bachelor of Technology  -  Electrical Engineering', x, y);
-  y += 5;
-
-  // Skills
-  line();
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(37, 99, 235);
-  doc.text('TECHNICAL SKILLS', x, y);
-  y += 4;
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.5);
-  doc.setTextColor(55, 65, 81);
-  var skills = [
-    'AI/ML: GenAI, LLMs, RAG, LangChain, LangGraph, AutoGen, LlamaIndex, OpenAI APIs, TensorFlow, PyTorch, Scikit-learn, NLP, Recommendation Systems',
-    'Data: PySpark, Databricks, SQL, Pandas, NumPy, Feature Engineering, ETL Pipelines',
-    'Tools: MLflow, Docker, FastAPI, Azure, Git, Vector Databases, MLOps, Production AI Deployment'
-  ];
-  for (var s = 0; s < skills.length; s++) {
-    var slines = doc.splitTextToSize(skills[s], pw);
-    checkPage(slines.length * 3.3);
-    doc.text(slines, x, y);
-    y += slines.length * 3.3 + 0.5;
-  }
-  y += 2;
-
-  // Projects
-  line();
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(37, 99, 235);
-  doc.text('KEY PROJECTS', x, y);
-  y += 4;
-
-  var projects = [
-    { t: 'Enterprise Retail Recommendation Engine', d: 'Scalable system covering 400K+ stores across Vietnam, Philippines & Indonesia. Python, PySpark, Databricks.' },
-    { t: 'GenAI Enterprise Insights Platform', d: 'Automated business insights generation using LLMs, LangChain, and RAG architecture.' },
-    { t: 'Autonomous Structured Data AI Agent', d: 'Autonomous workflows for analyzing banking datasets using LangGraph and AutoGen.' },
-    { t: 'Customer Intelligence & CLTV Modeling', d: 'Customer lifetime value prediction for strategic retail decision-making.' }
-  ];
-  for (var p = 0; p < projects.length; p++) {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8.5);
-    doc.setTextColor(17, 24, 39);
-    doc.text(projects[p].t, x, y);
-    y += 3;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(75, 85, 99);
-    var plines = doc.splitTextToSize(projects[p].d, pw);
-    checkPage(plines.length * 3);
-    doc.text(plines, x, y);
-    y += plines.length * 3 + 1.5;
-  }
-
-  // Save
-  doc.save('Ravijeet_Chandra_Resume.pdf');
-  setTimeout(function() { window.close(); }, 500);
-}
-
-generatePDF();
+  html2pdf().set(opt).from(element).save().then(function() {
+    setTimeout(function() { window.close(); }, 500);
+  });
+})();
 </script>
 </body>
 </html>
