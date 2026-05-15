@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/ravijeet-portfolio/favicon.ico" sizes="any" />
       </head>
       <body className="antialiased bg-background text-foreground">
         {children}

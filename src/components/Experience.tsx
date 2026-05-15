@@ -2,23 +2,21 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, MapPin, Calendar, ArrowRight } from "lucide-react";
-import Image from "next/image";
+
 
 const CompanyLogo = ({ name }: { name: string }) => {
   const logos: Record<string, string> = {
-    "Dr. Martens plc": "/dr-martens.png",
-    "Fractal Analytics": "/fractal.png",
-    "Accenture": "/accenture.png",
-    "Secure Meters Limited": "/secure-meters.png",
+    "Dr. Martens plc": "/ravijeet-portfolio/dr-martens.png",
+    "Fractal Analytics": "/ravijeet-portfolio/fractal.png",
+    "Accenture": "/ravijeet-portfolio/accenture.png",
+    "Secure Meters Limited": "/ravijeet-portfolio/secure-meters.png",
   };
   const logoSrc = logos[name];
   if (logoSrc) {
     return (
-      <Image
+      <img
         src={logoSrc}
         alt={name}
-        width={32}
-        height={32}
         className="w-8 h-8 object-contain"
       />
     );

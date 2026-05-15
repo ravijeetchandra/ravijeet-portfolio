@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Sparkles, Brain } from "lucide-react";
-import Image from "next/image";
+
 
 const rotatingSubtitles = [
   "Building AI Systems at Enterprise Scale",
@@ -129,11 +129,9 @@ export default function Hero() {
         >
           <div className="relative">
             <div className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl">
-              <Image
-                src="/profile.jpeg"
+              <img
+                src="/ravijeet-portfolio/profile.jpeg"
                 alt="Ravijeet Chandra"
-                width={384}
-                height={384}
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)] rounded-full" />
