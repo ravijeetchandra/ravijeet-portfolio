@@ -5,7 +5,7 @@ const nextConfig = {
     unoptimized: true,
   },
   output: "export",
-  trailingSlash: false,
+  basePath: "/ravijeet-portfolio",
 };
 
 module.exports = nextConfig;
