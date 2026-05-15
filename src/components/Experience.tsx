@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, MapPin, Calendar, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const CompanyLogo = ({ name }: { name: string }) => {
   const logos: Record<string, string> = {
@@ -13,9 +14,11 @@ const CompanyLogo = ({ name }: { name: string }) => {
   const logoSrc = logos[name];
   if (logoSrc) {
     return (
-      <img
+      <Image
         src={logoSrc}
         alt={name}
+        width={32}
+        height={32}
         className="w-8 h-8 object-contain"
       />
     );
