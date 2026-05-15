@@ -123,7 +123,13 @@ export default function Skills() {
               <div className="gradient-border h-full p-6 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center`}
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${
+                      catIndex === 0 ? "from-blue-500 to-cyan-500" :
+                      catIndex === 1 ? "from-purple-500 to-pink-500" :
+                      catIndex === 2 ? "from-orange-500 to-red-500" :
+                      catIndex === 3 ? "from-green-500 to-emerald-500" :
+                      "from-indigo-500 to-violet-500"
+                    } flex items-center justify-center`}
                   >
                     <category.icon size={24} className="text-white" />
                   </div>
