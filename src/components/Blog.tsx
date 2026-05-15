@@ -10,6 +10,7 @@ const articles = [
       "Exploring how GenAI is transforming enterprise operations and what it means for AI architects.",
     category: "AI Strategy",
     readTime: "8 min read",
+    url: "https://www.linkedin.com/in/ravijeetchandra/recent-activity/articles/",
   },
   {
     title: "Designing Production-Ready RAG Systems",
@@ -17,6 +18,7 @@ const articles = [
       "A comprehensive guide to building robust RAG systems that scale for enterprise workloads.",
     category: "Technical",
     readTime: "12 min read",
+    url: "https://www.linkedin.com/in/ravijeetchandra/recent-activity/articles/",
   },
   {
     title: "AI Agents and Autonomous Workflows",
@@ -24,6 +26,7 @@ const articles = [
       "Understanding the shift from deterministic to autonomous AI systems in enterprise settings.",
     category: "AI Research",
     readTime: "10 min read",
+    url: "https://www.linkedin.com/in/ravijeetchandra/recent-activity/articles/",
   },
   {
     title: "Building Scalable Recommendation Engines",
@@ -31,6 +34,7 @@ const articles = [
       "Lessons learned from building recommendation systems that handle millions of users.",
     category: "ML Engineering",
     readTime: "15 min read",
+    url: "https://www.linkedin.com/in/ravijeetchandra/recent-activity/articles/",
   },
 ];
 
@@ -59,8 +63,11 @@ export default function Blog() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {articles.map((article, index) => (
-            <motion.div
+            <motion.a
               key={article.title}
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -87,7 +94,7 @@ export default function Blog() {
                   <ArrowRight size={16} />
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
@@ -98,10 +105,15 @@ export default function Blog() {
           transition={{ delay: 0.4 }}
           className="text-center mt-12"
         >
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-colors">
+          <a
+            href="https://www.linkedin.com/in/ravijeetchandra/recent-activity/articles/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-colors"
+          >
             <BookOpen size={18} />
             View All Articles
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>

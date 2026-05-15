@@ -85,7 +85,7 @@ function AnimatedCounter({
 
 export default function Achievements() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="achievements" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent-purple/10" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
