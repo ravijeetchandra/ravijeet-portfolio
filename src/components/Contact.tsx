@@ -183,14 +183,16 @@ export default function Contact() {
               <p className="text-gray-400 mb-4">
                 Get a detailed overview of my experience and projects.
               </p>
-              <motion.button
+              <motion.a
+                href="/ravijeet-portfolio/resume.html"
+                target="_blank"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent-purple text-white font-medium rounded-lg transition-all hover:shadow-lg hover:shadow-primary/25"
               >
                 <Download size={18} />
-                Download PDF
-              </motion.button>
+                Download Resume
+              </motion.a>
             </div>
           </motion.div>
         </div>

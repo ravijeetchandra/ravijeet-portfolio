@@ -110,14 +110,16 @@ export default function Hero() {
               View Projects
               <ArrowRight size={18} />
             </motion.a>
-            <motion.button
+            <motion.a
+              href="/ravijeet-portfolio/resume.html"
+              target="_blank"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium rounded-lg transition-colors"
             >
               <Download size={18} />
               Download Resume
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
 
